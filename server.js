@@ -1,6 +1,10 @@
 var express = require('express')
 var app = express()
 
+var logger = require('./middleware/logger')
+app.use(logger)
+
+
 // register callbacks to routes
 app.get('/', (req, res) => {
   let now = new Date().toUTCString()
