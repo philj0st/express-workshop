@@ -34,28 +34,24 @@ app.get('/rc-*', (req, res) => {
   res.send(`sucessfully routed to ${path}`)
 })
 
-app.get('/api/user/:user_id', (req, res) => {
-  let userId = req.params.user_id
-  // make some db query for userId here
-  let user = {
-    id: userId,
-    name: "phil",
-    skills: ["express", "node", "mustache"]
-  }
-  // send JSON response
-  res.json(user)
-})
-
-app.get('/user/:user_id', (req, res) => {
+app.get('(/api)?/user/:user_id', (req, res, next) => {
+  // make the database query
   let userId = req.params.user_id
   let user = {
     id: userId,
     name: "phil",
     skills: ["express", "node", "mustache"]
   }
-  // Mustache.render() gets called under the hood
-  // which takes the name of the view and data to render
-  res.render('user', user)
+  // if the 1st part of the path is 'api'
+  if (req.path.split('/')[1]==='api') {
+    // send a json response
+    res.json(user)
+  }else {
+    // otherwise render a view
+    // Mustache.render() gets called under the hood because
+    // we registered it with app.engine('mustache', mustacheExpress())
+    res.render('user', user)
+  }
 })
 
 
