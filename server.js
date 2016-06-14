@@ -59,6 +59,23 @@ app.get('/user/:user_id', (req, res) => {
 })
 
 
+app.get('/users', (req, res) => {
+  // replace with db query
+  let users = [
+    {
+      id: 3,
+      name: "phil",
+      skills: ["express", "node", "mustache"]
+    },
+    {
+      id: 4,
+      name: "other user",
+      skills: ["flask", "python", "jinja"]
+    }
+  ]
+  res.render('users', {users:users})
+})
+
 app.listen(3000, () => {
   console.log('listening on port 3000');
 })
