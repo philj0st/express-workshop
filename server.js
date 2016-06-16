@@ -24,7 +24,9 @@ app.get('/', (req, res) => {
 // the response object has different send options
 // http://expressjs.com/en/guide/routing.html#response-methods
 app.get('/about', (req, res) => {
-  res.sendFile(__dirname + '/about.html')
+  // for serving a whole directory statically use app.use(express.static('public'))
+  // http://expressjs.com/en/starter/static-files.html
+  res.sendFile(__dirname + '/static/about.html')
 })
 
 // routes support simple wildcards and/or regex
