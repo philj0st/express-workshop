@@ -4,12 +4,18 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon server.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build-user-view": "mustache ./test/userData.json ./views/user.mustache > test/user.html"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "express": "^4.13.4",
     "mustache-express": "^1.2.2"
+  },
+  "devDependencies": {
+    "mustache": "^2.2.1",
+    "nodemon": "^1.9.2"
   }
 }

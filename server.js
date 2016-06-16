@@ -10,6 +10,8 @@ app.set('view engine', 'mustache')
 // optional. the default is the views folder in the root directory
 app.set('views', __dirname + '/views')
 
+app.set('port', (process.env.PORT || 8000))
+
 // register callbacks to routes
 app.get('/', (req, res) => {
   let now = new Date().toUTCString()
@@ -40,6 +42,7 @@ app.get('(/api)?/user/:user_id', (req, res, next) => {
   let user = {
     id: userId,
     name: "phil",
+    avatar: "https://www.gravatar.com/avatar/4373516e408be47bac8b81c04401ba12?s=50",
     skills: ["express", "node", "mustache"]
   }
   // if the 1st part of the path is 'api'
@@ -61,17 +64,19 @@ app.get('/users', (req, res) => {
     {
       id: 3,
       name: "phil",
+      avatar: "https://images.duckduckgo.com/iur/?f=1&image_host=https%3A%2F%2Fstore.sonyentertainmentnetwork.com%2Fstore%2Fapi%2Fchihiro%2F00_09_000%2Fcontainer%2FCL%2Fen%2F999%2FUP0002-NPUB31217_00-UATEENAGEM000003%2Fimage%3F_version%3D00_09_000%26platform%3Dchihiro%26w%3D124%26h%3D124%26bg_color%3D000000%26opacity%3D100&u=https://store.playstation.com/store/api/chihiro/00_09_000/container/CL/en/999/UP0002-NPUB31217_00-UATEENAGEM000003/image?_version=00_09_000&platform=chihiro&w=124&h=124&bg_color=000000&opacity=100",
       skills: ["express", "node", "mustache"]
     },
     {
       id: 4,
       name: "other user",
+      avatar: "https://images.duckduckgo.com/iu/?u=https%3A%2F%2Fstore.playstation.com%2Fstore%2Fapi%2Fchihiro%2F00_09_000%2Fcontainer%2FCL%2Fen%2F999%2FUP0002-NPUB31217_00-UATEENAGEM000002%2F1425460721000%2Fimage%3F_version%3D00_09_000%26platform%3Dchihiro%26w%3D124%26h%3D124%26bg_color%3D000000%26opacity%3D100&f=1",
       skills: ["flask", "python", "jinja"]
     }
   ]
   res.render('users', {users:users})
 })
 
-app.listen(3000, () => {
-  console.log('listening on port 3000');
+app.listen(app.get('port'), () => {
+  console.log(`listening on port ${app.get('port')}`)
 })

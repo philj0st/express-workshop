@@ -1,0 +1,6 @@
+{
+  "id": 2,
+  "name": "phil",
+  "avatar": "https://www.gravatar.com/avatar/4373516e408be47bac8b81c04401ba12?s=150",
+  "skills": ["express", "node", "mustache"]
+}
